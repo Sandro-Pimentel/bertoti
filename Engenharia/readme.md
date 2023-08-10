@@ -1,0 +1,1 @@
+A principal diferença entre programação e engenharia de software é que o engenheiro de sempre busca aperfeiçoar a aplicação tanto em velocidade, quanto em eficiência. Diferentemente do programador, em que sua preocupação é entregar o produto em funcionamento dentro de um prazo definido. 
