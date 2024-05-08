@@ -26,11 +26,11 @@
 
 - Flexibilidade e eficiência de uso
 
-<img src="euristicas7.png">
+<img src="euristica7.png">
 
 - Estética e design minimalista
 
-<img src"euristica8.png">
+<img src="euristica8.png">
 
 - Ajudar os usuários a reconhecer, diagnosticar e recuperar de erros
 
