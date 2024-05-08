@@ -20,7 +20,7 @@
 
  <img src="euristica5.png">
 
-- Regnition rather than recall
+- Reconhecimento melhor que lembrança
 
 <img src="euristica6.png">
 
