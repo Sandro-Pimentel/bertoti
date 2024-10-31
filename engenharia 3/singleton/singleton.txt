@@ -1,0 +1,31 @@
+public class Database {
+    private static Database instance;
+    private static final String URL = "jdbc:mysql://localhost:3306/nome_do_banco";
+    private static final String USER = "seu_usuario";
+    private static final String PASSWORD = "sua_senha";
+
+    private Database() {
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Conexão estabelecida com sucesso!");
+        } catch (SQLException e) {
+            System.out.println("Erro ao conectar ao banco de dados: " + e.getMessage());
+        }
+        return connection;
+    }
+
+    public static Database getInstance() {
+        if(this.instance == null) {
+            acquireThreadLock();
+            if(this.instance == null) {
+                this.instance = new Database();
+            }
+        }
+        return this.instance;
+    }
+
+    public void query(sql) {
+        System.out.println(sql);
+    }
+}
