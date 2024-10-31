@@ -1,0 +1,54 @@
+interface Component {
+    buy();
+    show();
+}
+
+public class Cardapio implements Component {
+    private ArrayList<Component> produtos;
+    
+    public Cardapio() {
+        this.produtos = [];
+    }
+
+    public void add(Component produto) {
+        this.produtos.add(produto);
+    }
+
+    public void remove(Component produto) {
+        this.produtos.remove(produto);
+    }
+
+    public ArrayList<Component> getChildren() {
+        return this.produtos;
+    }
+
+    public void show() {
+        for(Component component in produtos) {
+            component.show();
+        }
+    }
+}
+
+public class Produto implements Component {
+    private double preco;
+
+    public Produto {
+        this.preco = preco;
+    }
+
+    public void buy() {
+        System.out.println("Product bought");
+    }
+
+    public void show() {
+        System.out.println(preco);
+    }
+}
+
+public class Combo extends Produto {
+    public double preco;
+    
+    public void show() {
+        System.out.println(preco*2);
+    }
+}

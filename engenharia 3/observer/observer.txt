@@ -1,0 +1,39 @@
+public interface Observer {
+    update(int placarCasa, int placarFora);
+}
+
+public class PartidaFutebol {
+    private int placarCasa;
+    private int placarFora;
+    private List<Observer> observers;
+
+    public PartidaFutebol(int placarCasa, int placarFora) {
+        this.placarCasa = placarCasa;
+        this.placarFora = placarFora;
+        this.observers = [];
+    }
+
+    public void addObservers(Observer observer) {
+        this.observers.add(observer);
+    }
+
+    public notifyObservers() {
+        for(Observer observer in observers) {
+            observer.update(placarCasa, placarFora);
+        }
+    }
+}
+
+public class Placar implements Observer {
+    update(int placarCasa, int placarFora) {
+        System.out.println(placarCasa);
+        System.out.println(placarFora);
+    }
+}
+
+public class Tabela implements Observer {
+    update(int placarCasa, int placarFora){
+        System.out.println(placarCasa);
+        System.out.println(placarFora);
+    }
+}
