@@ -1,0 +1,109 @@
+public class Assento {
+    private int numero;
+    private boolean ocupado;
+    private boolean premium;
+
+    public Assento(int numero, boolean ocupado, boolean premium) {
+        this.numero = numero;
+        this.ocupado = ocupado;
+        this.premium = premium;
+    }
+
+    public void reservar() {
+        this.ocupado = !this.ocupado;
+    }
+
+    public int getNumero() {
+        return this.numero;
+    }
+
+    public int getOcupado() {
+        return this.ocupado;
+    }
+    public int getPremium() {
+        return this.premium;
+    }
+}
+
+public class Pagamento {
+    private double saldo;
+    private double preco;
+    private boolean operacaoAceita;
+
+    public Pagamento(double saldo, double preco) {
+        this.saldo = saldo;
+        this.preco = preco;
+        this.operacaoAceita = false;
+    }
+
+    public void processar(boolean premium) {
+        if(premium) {
+            this.preco *= 1.1
+        }
+
+        if(this.saldo >= preco) {
+            this.saldo -= preco;
+            this.operacaoAceita = true;
+        } else {
+            this.operacaoAceita = false;
+        }
+    }
+
+    public int getSaldo() {
+        return this.saldo;
+    }
+
+    public int getPreco() {
+        return this.preco;
+    }
+
+    public boolean getOperacaoAceita() {
+        return this.operacaoAceita;
+    }
+}
+
+public class Notificacao {
+    public enviar(boolean operacaoAceita, double saldo, double preco) {
+        if(operacaoAceita) {
+            System.out.println('Ingresso comprado com sucesso!');
+            System.out.println('Preço: ');
+            System.out.println(preco);
+        } else {
+            System.out.println('Saldo insuficiente, compra cancelada!');
+            System.out.println('Saldo: ');
+            System.out.println(saldo);
+            System.out.println('Preço: ');
+            System.out.println(preco);
+        }
+    }
+}
+
+public class FachadaCinema {
+    private Assento assento;
+    private Pagamento pagamento;
+    private Notificacao notificacao;
+
+    public FachadaCinema(Assento assento, Pagamento pagamento, Notificacao notificacao) {
+        this.assento = assento;
+        this.pagamento = pagamento;
+        this.notificacao = notificacao;
+    }
+
+    public void comprarIngresso() {
+        this.assento.reservar();
+        this.pagamento.processar(this.assento.premium);
+        this.notificacao.enviar(this.pagamento.operacaoAceita, this.pagamento.saldo, this.pagamento.preco);
+    }
+
+    public Assento getAssento() {
+        return this.assento;
+    }
+
+    public Pagamento getPagamento() {
+        return this.pagamento;
+    }
+
+    public Notificacao getNotificacao() {
+        return this.notificacao;
+    }
+}
