@@ -1,5 +1,5 @@
 public interface Observer {
-    update(int placarCasa, int placarFora);
+    update(String event, int placarCasa, int placarFora);
 }
 
 import java.util.HashMap;
@@ -8,20 +8,26 @@ public class GerenciadorEventos {
     private HashMap<String, List<Observer>> observers;
 
     public PartidaFutebol() {
-        this.observers = [];
+        this.observers = new HashMap<>();
     }
 
-    public void addObservers(String event, Observer observer) {
-        this.observers.add(event, observer);
+    public void addObserver(String event, Observer observer) {
+        this.observers.add(event, k -> new ArrayList<>()).add(observer);
     }
 
-    public void removeObservers(String event, Observer observer) {
-        this.observers.remove(event, observer);
+    public void removeObserver(String event, Observer observer) {
+        List<Observer> eventObservers = this.observers.get(event);
+        if(eventObservers != null) {
+            eventObservers.remove(observer);
+        }
     }
 
     public notifyObservers(String event, int placarCasa, int placarFora) {
-        for(Observer observer in observers.of(String event)) {
-            observer.update(event, placarCasa, placarFora);
+        List<Observer> eventObservers = this.observers.get(event);
+        if(eventObservers != null) {
+            for(Observer observer : eventObservers) {
+                observer.update(event, placarCasa, placarFora);
+            }
         }
     }
 }
@@ -33,29 +39,39 @@ public class Partida {
 
     public Partida(int placarCasa, int placarFora) {
         this.events = new GerenciadorEventos();
+        this.placarCasa = 0;
+        this.placarFora = 0;
+    }
+
+    public void addObserver(String event, Observer observer) {
+        this.events.addObserver(event, observer);
     }
 
     public golCasa() {
         this.placarCasa++;
+        this.events.notifyObservers("Gol Casa", placarCasa, placarFora);
     }
 
     public golFora() {
         this.placarFora++;
+        this.events.notifyObservers("Gol Fora", placarCasa, placarFora);
     }
 }
 
 public class Placar implements Observer {
-    update(String event, int placarCasa, int placarFora) {
-        System.out.println(event);
-        System.out.println(placarCasa);
-        System.out.println(placarFora);
+    @Override
+    public void update(String event, int placarCasa, int placarFora) {
+        System.out.println("Placar atualizado:");
+        System.out.println("Evento: " + event);
+        System.out.println("Casa: " + placarCasa + " | Fora: " + placarFora);
     }
 }
 
 public class Tabela implements Observer {
-    update(String event, int placarCasa, int placarFora){
-        System.out.println(event);
-        System.out.println(placarCasa);
-        System.out.println(placarFora);
+    @Override
+    public void update(String event, int placarCasa, int placarFora){
+        System.out.println("Tabela atualizada:");
+        System.out.println("Evento: " + event);
+        System.out.println("Casa: " + placarCasa + " | Fora: " + placarFora);
     }
 }
