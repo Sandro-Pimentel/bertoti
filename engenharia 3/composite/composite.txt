@@ -1,6 +1,6 @@
 interface Component {
-    buy();
-    show();
+    void buy();
+    void show();
 }
 
 public class Cardapio implements Component {
