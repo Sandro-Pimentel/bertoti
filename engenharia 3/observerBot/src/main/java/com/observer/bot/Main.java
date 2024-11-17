@@ -1,3 +1,5 @@
+package com.observer.bot;
+
 import org.telegram.telegrambots.longpolling.TelegramBotsLongPollingApplication;
 
 public class Main {
@@ -5,7 +7,7 @@ public class Main {
         String botToken = "7887084356:AAEESDqposlGR0riGMWPLhAI51IjC1IFXgg";
         try (TelegramBotsLongPollingApplication botsApplication = new TelegramBotsLongPollingApplication()) {
             botsApplication.registerBot(botToken, new MyAmazingBot(botToken));
-            System.out.println("MyAmazingBot successfully started!");
+            System.out.println("com.observer.bot.MyAmazingBot successfully started!");
             Thread.currentThread().join();
         } catch (Exception e) {
             e.printStackTrace();

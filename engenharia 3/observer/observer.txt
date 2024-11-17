@@ -1,5 +1,5 @@
 public interface Observer {
-    update(String event, int placarCasa, int placarFora);
+    void update(String event, int placarCasa, int placarFora);
 }
 
 import java.util.HashMap;
