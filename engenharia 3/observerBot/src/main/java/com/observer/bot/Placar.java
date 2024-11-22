@@ -19,12 +19,13 @@ public class Placar implements Observer {
         System.out.println("Placar atualizado:");
         System.out.println("Evento: " + event);
         System.out.println("Casa: " + placarCasa + " | Fora: " + placarFora);
+        SendMessage message = SendMessage
+                .builder()
+                .chatId(chat_id)
+                .text(event +  " atualizado(a): " + placarCasa + "X" + placarFora)
+                .build();
         try {
-            telegramClient.execute(SendMessage
-                    .builder()
-                    .chatId(chat_id)
-                    .text(event +  " atualizado(a): " + placarCasa + "X" + placarFora)
-                    .build());
+            telegramClient.execute(message);
         } catch(TelegramApiException e) {
             throw new RuntimeException(e);
         }
