@@ -1,3 +1,8 @@
+package com.singleton;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 public class Database {
     private static Database instance;
     private static final String URL = "jdbc:mysql://localhost:3306/banco";
@@ -25,7 +30,7 @@ public class Database {
         return this.instance;
     }
 
-    public void query(sql) {
+    public void query(String sql) {
         System.out.println(sql);
     }
 }
