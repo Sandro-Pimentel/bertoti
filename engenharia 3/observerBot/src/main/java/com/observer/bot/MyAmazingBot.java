@@ -73,6 +73,7 @@ public class MyAmazingBot implements LongPollingSingleThreadUpdateConsumer {
                         .build();
                 scheduler.scheduleAtFixedRate(() -> {
                     partida.golCasa();
+                    System.out.println("gol");
                 }, 10, 30, TimeUnit.SECONDS);
             } else {
                 message = SendMessage
